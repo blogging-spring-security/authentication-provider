@@ -3,6 +3,7 @@ package com.example.authenticationprovider
 import org.springframework.security.authentication.AuthenticationProvider
 import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.security.core.Authentication
+import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.crypto.password.PasswordEncoder
 
 class CustomAuthenticationProvider(
@@ -20,7 +21,7 @@ class CustomAuthenticationProvider(
         if (savedUser == null) throw BadCredentialsException("No such user with username $username exists")
         else if (!passwordEncoder.matches(password, savedUser.password)) throw BadCredentialsException("Password mismatch")
 
-        return CustomAuthenticationToken(username, password)
+        return CustomAuthenticationToken(username, password, mutableListOf(SimpleGrantedAuthority("USER")))
     }
 
     override fun supports(authentication: Class<*>?): Boolean {

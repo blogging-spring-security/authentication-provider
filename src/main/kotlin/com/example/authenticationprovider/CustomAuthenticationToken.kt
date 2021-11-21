@@ -8,7 +8,11 @@ class CustomAuthenticationToken : AbstractAuthenticationToken {
     var username: String
     var password: String
 
-    constructor(username: String, password: String): this(username, password, mutableListOf(SimpleGrantedAuthority("USER")))
+    constructor(username: String, password: String) : super(mutableListOf(SimpleGrantedAuthority("USER"))) {
+        this.username = username
+        this.password = password
+    }
+
 
     constructor(username: String, password: String, authorities: MutableCollection<out GrantedAuthority>?) : super(
         authorities) {
@@ -24,5 +28,4 @@ class CustomAuthenticationToken : AbstractAuthenticationToken {
     override fun getPrincipal(): Any {
         return this.username
     }
-
 }
