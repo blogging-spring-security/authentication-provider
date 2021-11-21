@@ -22,9 +22,6 @@ class SecurityConfiguration(
         http
             .csrf()
             .disable()
-            .sessionManagement()
-            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        .and()
             .addFilterBefore(getCustomAuthenticationFilter(), UsernamePasswordAuthenticationFilter::class.java)
             .authorizeRequests().anyRequest().authenticated()
     }
