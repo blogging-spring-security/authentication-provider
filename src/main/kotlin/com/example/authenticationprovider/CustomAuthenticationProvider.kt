@@ -10,7 +10,7 @@ class CustomAuthenticationProvider(
     private val passwordEncoder: PasswordEncoder,
 ) : AuthenticationProvider {
     override fun authenticate(authentication: Authentication?): Authentication {
-        val customAuthentication = authentication as CustomToken
+        val customAuthentication = authentication as CustomAuthenticationToken
 
         val username = customAuthentication.username
         val password = customAuthentication.password
@@ -20,10 +20,10 @@ class CustomAuthenticationProvider(
         if (savedUser == null) throw BadCredentialsException("No such user with username $username exists")
         else if (!passwordEncoder.matches(password, savedUser.password)) throw BadCredentialsException("Password mismatch")
 
-        return CustomToken(username, password)
+        return CustomAuthenticationToken(username, password)
     }
 
     override fun supports(authentication: Class<*>?): Boolean {
-        return authentication?.equals(CustomToken::class.java) ?: false
+        return authentication?.equals(CustomAuthenticationToken::class.java) ?: false
     }
 }

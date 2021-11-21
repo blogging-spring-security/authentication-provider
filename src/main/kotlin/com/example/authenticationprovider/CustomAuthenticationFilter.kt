@@ -22,7 +22,7 @@ class CustomAuthenticationFilter(requestMatcher: RequestMatcher) :
 
         val (username, password) = userInfo
 
-        return authenticationManager.authenticate(CustomToken(username, password))
+        return authenticationManager.authenticate(CustomAuthenticationToken(username, password))
     }
 
     private fun retrieveJson(request: HttpServletRequest?): String {

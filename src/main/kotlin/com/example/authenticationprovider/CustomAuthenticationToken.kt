@@ -4,7 +4,7 @@ import org.springframework.security.authentication.AbstractAuthenticationToken
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 
-class CustomToken : AbstractAuthenticationToken {
+class CustomAuthenticationToken : AbstractAuthenticationToken {
     var username: String
     var password: String
 
