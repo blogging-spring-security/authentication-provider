@@ -10,14 +10,6 @@ import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder
 
 @Configuration
 class PasswordEncoderConfiguration {
-    companion object {
-        val encoders = mapOf(
-            "bcrypt" to BCryptPasswordEncoder(),
-            "scrypt" to SCryptPasswordEncoder(),
-            "noOp" to NoOpPasswordEncoder.getInstance(),
-        )
-    }
-
     @Bean
     fun passwordEncoder(): PasswordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder()
 }
